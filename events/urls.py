@@ -16,8 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from events import views
+from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('events/', views.event_list)
+    path('events/', views.event_list),
+    path('events/<int:id>', views.event_detail)
 ]
+
+# formatting json 
+# http://127.0.0.1:8000/events.json
+urlpatterns = format_suffix_patterns(urlpatterns)
